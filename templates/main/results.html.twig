@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table">
+        {% for key, value in results %}
+
+            {% if value.conclusion == 'Очень хорошо' %}
+                {% set class = 'table-success' %}
+            {% elseif value.conclusion == 'Хорошо' %}
+                {% set class = 'table-primary' %}
+            {% elseif value.conclusion == 'Зона риска' %}
+                {% set class = 'table-warning' %}
+            {% elseif value.conclusion == 'Неудовлетворительно' %}
+                {% set class = 'table-danger' %}
+            {% endif %}
+            <tr>
+                <td>{{ key }}</td>
+                <td class="{{ class }}">{{ value.conclusion }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
